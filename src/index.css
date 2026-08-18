@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base text-ink font-body antialiased;
+    background-image: radial-gradient(circle at 1px 1px, #1b2029 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  /* Foco visible para navegación con teclado */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid theme('colors.ember.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: theme('colors.ember.DEFAULT');
+    color: #0a0c10;
+  }
+}
+
+@layer components {
+  .section {
+    @apply mx-auto w-full max-w-6xl px-6 py-20 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-ember;
+  }
+
+  .panel {
+    @apply rounded-xl border border-base-border bg-base-panel;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-ember px-5 py-3 font-display text-sm font-semibold text-base transition-colors hover:bg-ember-soft;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-lg border border-base-border bg-base-panel px-5 py-3 font-display text-sm font-semibold text-ink transition-colors hover:border-ember/60 hover:text-ember;
+  }
+}
+
+/* Respeta la preferencia del usuario de reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
